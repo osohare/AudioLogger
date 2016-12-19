@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getDevices">
+        <s:complexType />
+      </s:element>
+      <s:element name="getDevicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDevicesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getLines">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deviceName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLinesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLinesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="newConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="tns:KLogger" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="KLogger">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="stationID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="station" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="deviceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lineName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="bitRate" type="tns:BitRate" />
+          <s:element minOccurs="1" maxOccurs="1" name="sampleRate" type="tns:SampleRate" />
+          <s:element minOccurs="1" maxOccurs="1" name="volume" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="recycleInterval" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="workingDirectory" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="isRecording" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="BitRate">
+        <s:restriction base="s:string">
+          <s:enumeration value="br320" />
+          <s:enumeration value="br256" />
+          <s:enumeration value="br128" />
+          <s:enumeration value="br64" />
+          <s:enumeration value="br32" />
+          <s:enumeration value="br24" />
+          <s:enumeration value="br16" />
+          <s:enumeration value="br8" />
+          <s:enumeration value="br_default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SampleRate">
+        <s:restriction base="s:string">
+          <s:enumeration value="sr_default" />
+          <s:enumeration value="sr8000" />
+          <s:enumeration value="sr11025" />
+          <s:enumeration value="sr22050" />
+          <s:enumeration value="sr44100" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="newConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="newConfigResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getConfig">
+        <s:complexType />
+      </s:element>
+      <s:element name="getConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getConfigResult" type="tns:ArrayOfKLogger" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfKLogger">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KLogger" nillable="true" type="tns:KLogger" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="setConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="tns:KLogger" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setConfigResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="startLogger">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="stationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="startLoggerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startLoggerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="stopLogger">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="stationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="stopLoggerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="stopLoggerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getDevicesSoapIn">
+    <wsdl:part name="parameters" element="tns:getDevices" />
+  </wsdl:message>
+  <wsdl:message name="getDevicesSoapOut">
+    <wsdl:part name="parameters" element="tns:getDevicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLinesSoapIn">
+    <wsdl:part name="parameters" element="tns:getLines" />
+  </wsdl:message>
+  <wsdl:message name="getLinesSoapOut">
+    <wsdl:part name="parameters" element="tns:getLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="newConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:newConfig" />
+  </wsdl:message>
+  <wsdl:message name="newConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:newConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="getConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:getConfig" />
+  </wsdl:message>
+  <wsdl:message name="getConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:getConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="setConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:setConfig" />
+  </wsdl:message>
+  <wsdl:message name="setConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:setConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="startLoggerSoapIn">
+    <wsdl:part name="parameters" element="tns:startLogger" />
+  </wsdl:message>
+  <wsdl:message name="startLoggerSoapOut">
+    <wsdl:part name="parameters" element="tns:startLoggerResponse" />
+  </wsdl:message>
+  <wsdl:message name="stopLoggerSoapIn">
+    <wsdl:part name="parameters" element="tns:stopLogger" />
+  </wsdl:message>
+  <wsdl:message name="stopLoggerSoapOut">
+    <wsdl:part name="parameters" element="tns:stopLoggerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AdminServicesServiceSoap">
+    <wsdl:operation name="getDevices">
+      <wsdl:input message="tns:getDevicesSoapIn" />
+      <wsdl:output message="tns:getDevicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLines">
+      <wsdl:input message="tns:getLinesSoapIn" />
+      <wsdl:output message="tns:getLinesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="newConfig">
+      <wsdl:input message="tns:newConfigSoapIn" />
+      <wsdl:output message="tns:newConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getConfig">
+      <wsdl:input message="tns:getConfigSoapIn" />
+      <wsdl:output message="tns:getConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setConfig">
+      <wsdl:input message="tns:setConfigSoapIn" />
+      <wsdl:output message="tns:setConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="startLogger">
+      <wsdl:input message="tns:startLoggerSoapIn" />
+      <wsdl:output message="tns:startLoggerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="stopLogger">
+      <wsdl:input message="tns:stopLoggerSoapIn" />
+      <wsdl:output message="tns:stopLoggerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdminServicesServiceSoap" type="tns:AdminServicesServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDevices">
+      <soap:operation soapAction="http://tempuri.org/getDevices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLines">
+      <soap:operation soapAction="http://tempuri.org/getLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="newConfig">
+      <soap:operation soapAction="http://tempuri.org/newConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfig">
+      <soap:operation soapAction="http://tempuri.org/getConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setConfig">
+      <soap:operation soapAction="http://tempuri.org/setConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startLogger">
+      <soap:operation soapAction="http://tempuri.org/startLogger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stopLogger">
+      <soap:operation soapAction="http://tempuri.org/stopLogger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AdminServicesServiceSoap12" type="tns:AdminServicesServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDevices">
+      <soap12:operation soapAction="http://tempuri.org/getDevices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLines">
+      <soap12:operation soapAction="http://tempuri.org/getLines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="newConfig">
+      <soap12:operation soapAction="http://tempuri.org/newConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfig">
+      <soap12:operation soapAction="http://tempuri.org/getConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setConfig">
+      <soap12:operation soapAction="http://tempuri.org/setConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="startLogger">
+      <soap12:operation soapAction="http://tempuri.org/startLogger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stopLogger">
+      <soap12:operation soapAction="http://tempuri.org/stopLogger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdminServicesService">
+    <wsdl:port name="AdminServicesServiceSoap" binding="tns:AdminServicesServiceSoap">
+      <soap:address location="http://localhost/AudioLoggerWebSite/AdminServicesService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AdminServicesServiceSoap12" binding="tns:AdminServicesServiceSoap12">
+      <soap12:address location="http://localhost/AudioLoggerWebSite/AdminServicesService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
