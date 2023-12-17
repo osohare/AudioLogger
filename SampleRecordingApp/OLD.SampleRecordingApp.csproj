@@ -11,7 +11,7 @@
     <RootNamespace>SampleRecordingApp</RootNamespace>
     <AssemblyName>SampleRecordingApp</AssemblyName>
     <StartupObject>SampleRecordingApp.Program</StartupObject>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
